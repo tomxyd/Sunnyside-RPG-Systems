@@ -83,6 +83,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6c0d043397f144d8a52f11a667d5d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: c82c10ae826fe4048acb5351fdbaf882, type: 2}
+  slots:
+  - {fileID: 4791811886871584314, guid: 9dd4b33f8ee8dac48a163fc32d2a555a, type: 3}
+  - {fileID: 4791811886871584314, guid: 9dd4b33f8ee8dac48a163fc32d2a555a, type: 3}
+  - {fileID: 4791811886871584314, guid: 9dd4b33f8ee8dac48a163fc32d2a555a, type: 3}
+  - {fileID: 4791811886871584314, guid: 9dd4b33f8ee8dac48a163fc32d2a555a, type: 3}
   _item: {fileID: 11400000, guid: 57fc6723aed46164eb6c50088badf138, type: 2}
 --- !u!1 &6638128162850365792
 GameObject:

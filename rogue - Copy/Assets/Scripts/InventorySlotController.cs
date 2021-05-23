@@ -18,7 +18,6 @@ public class InventorySlotController : MonoBehaviour
         return _item;
     }
     public void RemoveItem(){
-        Debug.Log(GetItemID().itemName);
         inventory.RemoveItem(GetItemID());
     }
 }
