@@ -19,7 +19,8 @@ public class InventoryUI : MonoBehaviour
     private void Update() {
         UpdateDisplay();
     }
-    void UpdateDisplay(){
+    public void UpdateDisplay(){
+        #region Create Display
        for (int i = 0; i < inventory.items.Count; i++)
        {
             slots[i].transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1);
@@ -30,7 +31,7 @@ public class InventoryUI : MonoBehaviour
 
             slots[i].transform.GetChild(2).gameObject.SetActive(true);
         }
-
+        #endregion
         for (int i = 0; i < slots.Length; i++)
         {
             if(i < inventory.items.Count){

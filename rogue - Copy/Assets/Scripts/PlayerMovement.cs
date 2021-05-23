@@ -36,8 +36,10 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Tab)){
             if(IP.activeSelf){
                 IP.SetActive(false);
+                state = State.Normal;
             }else{
                 IP.SetActive(true);
+                state = State.Pause;
             }
         }
     }
@@ -45,33 +47,14 @@ public class PlayerMovement : MonoBehaviour
         switch(state){
             case State.Pause:
                 Menu();
-                  if(IP.activeSelf){
-                    state = State.Pause;
-                }else{
-                    state = State.Normal;
-                }
                 break;
             case State.Normal:
                 Menu();
-                float horizontalInput = Input.GetAxis("Horizontal");
-                float verticalInput = Input.GetAxis("Vertical");
-                Vector2 movementInput = new Vector2(horizontalInput, verticalInput);
-                moveDir = movementInput.normalized;
-                if (horizontalInput != 0 || verticalInput != 0)
-                {
-                    lastMoveDir = moveDir;
-                }
-                if ((moveDir.x > 0 && !facingRight) || (moveDir.x < 0 && facingRight))
-                {
-                    Flip();
-                }
+                HandleMovement();
                 PlayerRoll();
                 if(Input.GetMouseButtonDown(0)){
                     state = State.Mining;
                     
-                }
-                if(IP.activeSelf){
-                    state = State.Pause;
                 }
                 break;
             case State.roll:
@@ -96,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetTrigger("mine");
                 state = State.Normal;
                 break;
-
+           
         }
         
         
@@ -133,8 +116,26 @@ public class PlayerMovement : MonoBehaviour
             case State.Attack:
                 rigidbody2D.velocity = Vector2.zero;
                 break;
+            case State.Pause:
+                rigidbody2D.velocity = Vector2.zero;
+                break;
+
         }
         
+    }
+    void HandleMovement(){
+          float horizontalInput = Input.GetAxis("Horizontal");
+                float verticalInput = Input.GetAxis("Vertical");
+                Vector2 movementInput = new Vector2(horizontalInput, verticalInput);
+                moveDir = movementInput.normalized;
+                if (horizontalInput != 0 || verticalInput != 0)
+                {
+                    lastMoveDir = moveDir;
+                }
+                if ((moveDir.x > 0 && !facingRight) || (moveDir.x < 0 && facingRight))
+                {
+                    Flip();
+                }
     }
     void Flip()
     {

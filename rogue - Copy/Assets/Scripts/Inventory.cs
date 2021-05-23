@@ -8,27 +8,63 @@ public class Inventory : ScriptableObject
     public List<Item> items = new List<Item>();
     public List<int> itemNumber = new List<int>();
 
-    public void AddItem(Item _item){
-       if(!items.Contains(_item)){// if there is no existing item
+    public void AddItem(Item _item)
+    {
+        if (!items.Contains(_item))
+        {// if there is no existing item
             items.Add(_item);
             itemNumber.Add(1);
-        }else{
+        }
+        else
+        {
             for (int i = 0; i < items.Count; i++)
             {
-                if(items[i] == _item){
+                if (items[i] == _item)
+                {
                     itemNumber[i]++;
                 }
             }
         }
     }
 
-    public void RemoveItem(Item _item){
-        if(items.Contains(_item)){ //if there is no existing item
+    public void RemoveItem(Item _item)
+    {
+        if (items.Contains(_item))
+        { //if there is no existing item
             for (int i = 0; i < items.Count; i++)
             {
-                if(_item == items[i]){
+                if (_item == items[i])
+                {
                     itemNumber[i]--;
-                    if(itemNumber[i] == 0){
+                    if (itemNumber[i] == 0)
+                    {
+                        items.Remove(_item);
+                        itemNumber.Remove(itemNumber[i]);
+                    }
+                }
+            }
+        }
+    }
+    public bool ContainsItem(Item _item, int amount)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+           if(_item == items[i] && itemNumber[i] >= amount){
+                return true;
+            }
+        }
+        return false;
+    }
+    public void RemoveItem(Item _item, int amount){
+         if (items.Contains(_item))
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (_item == items[i])
+                {
+                    itemNumber[i] -= amount;
+                    if (itemNumber[i] == 0)
+                    {
                         items.Remove(_item);
                         itemNumber.Remove(itemNumber[i]);
                     }
