@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Resource
   - Slot
+  - InventoryPanel
   layers:
   - Default
   - TransparentFX
